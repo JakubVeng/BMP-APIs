@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  description: ""
+  title: OpenAPI3Definition 41
+  version: "1"
+servers:
+- url: /
+paths:
+  /customers/create:
+    post:
+      description: ""
+      operationId: create-customer
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_customer_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_customer_200_response'
+          description: Customer created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Incorrect format
+      x-eov-operation-handler: controllers/DefaultController
+components:
+  schemas:
+    customer:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        dateOfBirth:
+          type: string
+      required:
+      - dateOfBirth
+      - email
+      - name
+      type: object
+    create_customer_request:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        dateOfBirth:
+          type: string
+      required:
+      - dateOfBirth
+      - email
+      - name
+      type: object
+    create_customer_200_response:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+  securitySchemes: {}
